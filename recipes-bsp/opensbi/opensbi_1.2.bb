@@ -33,19 +33,18 @@ do_install:append() {
 	rm -r ${D}/include
 	rm -r ${D}/lib*
 	rm -r ${D}/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/payloads
+	rm -r ${D}/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_jump.elf
+	rm -r ${D}/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_dynamic.*
+	rm -r ${D}/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_payload.*
 }
 
 do_deploy () {
-	install -m 755 ${D}/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_payload.* ${DEPLOYDIR}/
 	install -m 755 ${D}/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_jump.* ${DEPLOYDIR}/
-	install -m 755 ${D}/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_dynamic.* ${DEPLOYDIR}/
 }
 
 addtask deploy before do_build after do_install
 
-FILES:${PN} += "/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_jump.*"
-FILES:${PN} += "/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_payload.*"
-FILES:${PN} += "/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_dynamic.*"
+FILES:${PN} += "/share/opensbi/*/${RISCV_SBI_PLAT}/firmware/fw_jump.bin"
 
 COMPATIBLE_HOST = "(riscv64|riscv32).*"
 INHIBIT_PACKAGE_STRIP = "1"

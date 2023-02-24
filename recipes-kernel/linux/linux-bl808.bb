@@ -49,4 +49,4 @@ KERNEL_DEVICETREE = "bouffalolab/bl808-sipeed-m1s.dtb bouffalolab/bl808-pine64-o
 COMPATIBLE_MACHINE = "(bl808|pine64-ox64|sipeed-m1s)"
 COMPATIBLE_HOST = "(riscv64-poky-linux|riscv64-poky-elf|riscv64-bflb-linux)"
 
-KERNEL_IMAGETYPE = "Image"
+KCONFIG_MODE = "--alldefconfig"

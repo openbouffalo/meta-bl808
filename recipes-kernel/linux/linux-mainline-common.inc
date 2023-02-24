@@ -16,5 +16,5 @@ KBUILD_DEFCONFIG:bl808 = "defconfig"
 
 COMPATIBLE_MACHINE = "bl808"
 
-KERNEL_DEVICETREE:bl808 = "bouffalolab/bl808-sispeed-m1sdock"
+KERNEL_DEVICETREE:bl808 = "bouffalolab/bl808-sipeed-m1s bouffalolab/bl808-pine64-ox64"
 
