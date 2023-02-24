@@ -46,7 +46,7 @@ SRC_URI =   "git://github.com/torvalds/linux.git;branch=${BRANCH};protocol=https
 
 KERNEL_DEVICETREE = "bouffalolab/bl808-sipeed-m1s.dtb bouffalolab/bl808-pine64-ox64.dtb"
 
-COMPATIBLE_MACHINE = "(bl808|pine64-ox64|sipeed-m1s)"
-COMPATIBLE_HOST = "(riscv64-poky-linux|riscv64-poky-elf|riscv64-bflb-linux)"
-
+COMPATIBLE_MACHINE = "(bl808)"
+#COMPATIBLE_HOST = "(riscv64-poky-linux|riscv64-poky-elf|riscv64-bflb-linux)"
+COMPATIBLE_HOST = "(riscv64-bflb-linux)"
 KCONFIG_MODE = "--alldefconfig"
