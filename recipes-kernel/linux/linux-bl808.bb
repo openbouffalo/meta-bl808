@@ -6,14 +6,15 @@ inherit kernel
 require recipes-kernel/linux/linux-yocto.inc
 
 
-LINUX_VERSION ?= "v6.2-rc8"
+LINUX_VERSION ?= "v6.2"
 KERNEL_VERSION_SANITY_SKIP="1"
 SRCPV = "${@bb.fetch2.get_srcrev(d)}"
-PV = "${LINUX_VERSION}+git${SRCPV}"
+PR = "r1"
+PV = "${LINUX_VERSION}"
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 BRANCH = "master"
-SRCREV = "ceaa837f96adb69c0df0397937cd74991d5d821a"
+SRCREV = "c9c3395d5e3dcc6daee66c6908354d47bf98cb0c"
 
 SRC_URI =   "git://github.com/torvalds/linux.git;branch=${BRANCH};protocol=https \
             file://0002-serial-bflb_uart-add-Bouffalolab-UART-Driver.patch \
