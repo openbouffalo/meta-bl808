@@ -1,0 +1,21 @@
+From 5a4da0ed004b65b016d8063c927d37fbc3816326 Mon Sep 17 00:00:00 2001
+From: Justin Hammond <justin@dynam.ac>
+Date: Wed, 1 Mar 2023 23:49:29 +0800
+Subject: [PATCH] Update length of dynamic linker
+
+---
+ scripts/lib-names.awk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/scripts/lib-names.awk b/scripts/lib-names.awk
+index a9e018bba1..dc0d8f5968 100644
+--- a/scripts/lib-names.awk
++++ b/scripts/lib-names.awk
+@@ -27,6 +27,6 @@
+ END {
+   for (elt in macros) {
+     split(elt, x);
+-    printf("%-40s%s\n", "#define " x[2], macros[elt]);
++    printf("%-50s%s\n", "#define " x[2], macros[elt]);
+   }
+ }
