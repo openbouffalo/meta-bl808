@@ -8,6 +8,7 @@ SRC_URI = " \
 "
 
 PV = "1.0"
+PR = "r1"
 
 inherit deploy python3native
 
