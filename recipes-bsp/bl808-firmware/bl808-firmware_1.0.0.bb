@@ -12,23 +12,27 @@ PR = "r1"
 
 inherit deploy python3native
 
-DEPENDS += " u-boot opensbi python3-native lz4-native"
+DEPENDS = "u-boot opensbi python3-native lz4-native"
 RDEPENDS:${PN} += " python3-core lz4 u-boot opensbi"
 
 do_install() {
     install -d ${D}${bindir}
+    install -d ${D}/lib/firmware/bl808/
     install -m 0755 ${WORKDIR}/mergebin.py ${D}${bindir}/mergebin.py
-
+    lz4 -f9 ${DEPLOY_DIR_IMAGE}/u-boot.bin ${D}/lib/firmware/bl808/u-boot.bin.lz4
+    chown root.root ${D}/lib/firmware/bl808/u-boot.bin.lz4
+    install -m 0755 ${DEPLOY_DIR_IMAGE}/u-boot.dtb ${D}/lib/firmware/bl808/u-boot.dtb
+    install -m 0755 ${DEPLOY_DIR_IMAGE}/fw_jump.bin ${D}/lib/firmware/bl808/fw_jump.bin
+    ${WORKDIR}/mergebin.py -o ${D}/lib/firmware/bl808/bl808-firmware.bin -k ${D}/lib/firmware/bl808/u-boot.bin.lz4 -d ${D}/lib/firmware/bl808/u-boot.dtb -s ${D}/lib/firmware/bl808/fw_jump.bin 
 }
 
 do_deploy() {
-    if [ -f ${DEPLOY_DIR_IMAGE}/u-boot.bin.lz4 ]; then
-        rm ${DEPLOY_DIR_IMAGE}/u-boot.bin.lz4
-    fi
-    lz4 -9 ${DEPLOY_DIR_IMAGE}/u-boot.bin ${DEPLOY_DIR_IMAGE}/u-boot.bin.lz4
-    ${WORKDIR}/mergebin.py -o ${DEPLOY_DIR_IMAGE}/bl808-firmware.bin -k ${DEPLOY_DIR_IMAGE}/u-boot.bin.lz4 -d ${DEPLOY_DIR_IMAGE}/u-boot.dtb -s ${DEPLOY_DIR_IMAGE}/fw_jump.bin 
-    #rm -r ${DEPLOY_DIR_IMAGE}/u-boot* ${DEPLOY_DIR_IMAGE}/fw_jump.bin ${DEPLOY_DIR_IMAGE}/u-boot.dtb
+    install ${D}/lib/firmware/bl808/bl808-firmware.bin ${DEPLOYDIR}/bl808-firmware.bin
 }
+
+FILES:${PN} += "${bindir}/mergebin.py \
+        /lib/firmware/bl808/ \
+        "
 
 addtask deploy after do_install
 
