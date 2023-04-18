@@ -12,7 +12,8 @@ PR = "r1"
 
 inherit deploy python3native
 
-DEPENDS = "u-boot opensbi lz4-native"
+DEPENDS = "lz4-native"
+do_install[depends] += "opensbi:do_deploy u-boot:do_deploy"
 
 do_install() {
     install -d ${D}${bindir}
