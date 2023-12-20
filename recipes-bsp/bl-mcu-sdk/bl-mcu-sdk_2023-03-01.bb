@@ -3,7 +3,7 @@ LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=3b8b0af6c95458efe12d9bd2c5aa52e9"
 
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI = "git://github.com/bouffalolab/bl_mcu_sdk.git;protocol=https;branch=master \
+SRC_URI = "git://github.com/bouffalolab/bl_mcu_sdk.git;protocol=https;nobranch=1 \
            file://bflb_fw_post_proc.py \
           "
 SRCREV = "ab70ccc953269bb4a35279000beea9013da5ac1c"
